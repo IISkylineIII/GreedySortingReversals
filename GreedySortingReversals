@@ -1,0 +1,15 @@
+def GreedySortingReversals(permutation):
+    reversals = []
+
+    for k in range(len(permutation), 0, -1):
+        if permutation[k - 1] != k:
+            idx = permutation.index(k if k > 0 else -k)
+            permutation[k - 1:idx + 1] = [-x for x in reversed(permutation[k - 1:idx + 1])]
+            reversals.append(list(permutation))
+
+    return reversals
+
+permutation = list(range(100, 0, -1))  # Create the initial permutation (+100 +99 ... +2 +1)
+reversals = GreedySortingReversals(permutation)
+
+print("Number of reversals needed:", len(reversals))
